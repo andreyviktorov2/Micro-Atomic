@@ -1,5 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 
-project ("Micro Atomic")
+project ("MicroAtomic")
 
-add_executable (Micro Atomic "console_app.cpp")
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable (${CMAKE_PROJECT_NAME} "console_app.cpp")

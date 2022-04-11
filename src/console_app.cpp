@@ -6,9 +6,9 @@
 
 int main() {
   std::cout
-      << "Micro Atomic research project.\n All rights are reserved. Version "
+      << "Micro Atomic research project.\nAll rights are reserved. Version "
       << CURRENT_VERSION << "\n";
-  std::cout << "Please, enter the name of the file you want to open. Supported "
+  std::cout << "\n\nPlease, enter the name of the file you want to open. Supported "
                "formats are png, jpg.\n";
 
   std::string dummy;
@@ -25,11 +25,12 @@ int main() {
   if (answer == 'Y') std::cout << "Report will be saved in FullReport.format\n";
 
   std::cout
-      << "Neural network started working. Please, wait until it finish.\n\n";
+      << "Neural network started working. Please, wait until it finishes.\n\n";
+  std::this_thread::sleep_for(std::chrono::seconds(2));
 
   std::cout << "Network finished its work. "
             << (answer == 'Y' ? "You can see full report in FullReport.format\n"
                               : "\n");
   std::cout << "\nReport for the result of network work:\n";
-  std::cout << 2 << "items was found\n";
+  std::cout << 2 << " items was found\n";
 }
