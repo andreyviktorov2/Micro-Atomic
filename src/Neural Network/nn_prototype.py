@@ -2,6 +2,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras import layers, optimizers, models
 import numpy as np
 import tensorflow as tf
+from data_parser import DataCollector
 
 import os
 import sys
@@ -20,7 +21,9 @@ def CreateModel(image_x, image_y, learning_rate):
   model = models.Sequential()
 
   model.add(layers.Flatten(input_shape = (image_x, image_y)))
+  model.add(layers.Dense(units = 128, activation = 'relu'))
   model.add(layers.Dense(units = 32, activation = 'relu'))
+  model.add(layers.Dense(units = 8, activation = 'relu'))
   model.add(layers.Dropout(rate = 0.2))
   model.add(layers.Dense(1, activation = 'sigmoid'))
 
@@ -30,6 +33,9 @@ def CreateModel(image_x, image_y, learning_rate):
   return model
 
 
+# collector to parse input data
+collector = DataCollector()
+
 # input parsed images - list of matrix (matrix = image)
 input_data = [[[ ]]]
 input_test_data = [[[ ]]]
@@ -38,8 +44,8 @@ input_test_data = [[[ ]]]
 target_data = 0
 target_test_data = 0
 
-image_x = 28
-image_y = 28
+image_x = 256
+image_y = 20
 
 # model args
 learning_rate = 0.003
