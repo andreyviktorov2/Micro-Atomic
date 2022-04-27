@@ -18,9 +18,9 @@ class DataCollector(object):
   def ReadFile(self, path):
     with open(path, "r") as file:
       self.data = file.readlines()
-    self.ParseData()
+    self.__ParseData()
   
-  def ParseData(self):
+  def __ParseData(self):
     for line in self.data:
       if "NX" in line:
         self.nx = (int)(line.split()[-1])
