@@ -1,3 +1,5 @@
+import numpy as np
+
 class DataCollector(object):
     
   def __init__(self):
@@ -13,7 +15,7 @@ class DataCollector(object):
     self.unit_y = ""
     self.unit_data = ""
     self.data_scale_needed = False
-    self.matrix = []
+    self.matrix = np.empty(shape=(1,1))
 
   def ReadFile(self, path):
     with open(path, "r") as file:
@@ -48,8 +50,14 @@ class DataCollector(object):
         if "Yes" in line.split()[-1]:
           self.data_scale_needed = True
       elif "Start of Data" in line:
+        self.matrix = np.empty(shape=(self.ny, self.nx))
+
         idx = self.data.index(line) + 1
+        idx_matrix = 0
         assert(idx <= len(self.data) and idx >= 0)
+
         while idx < len(self.data):
-          self.matrix.append([int(number) for number in self.data[idx].split(" ")])
+          assert(idx_matrix < self.ny)
+          self.matrix[idx_matrix] = np.array(self.data[idx].split(' ')).astype(np.float)
           idx += 1
+          idx_matrix += 1

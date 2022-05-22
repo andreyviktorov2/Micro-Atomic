@@ -1,6 +1,5 @@
 import os
 import sys
-import random
 import numpy as np
 
 class DatasetGenerator:
@@ -28,10 +27,12 @@ class DatasetGenerator:
     print("Created: " + self.file_name_full)
 
 
-  def __WriteMatrixToFile(self, file, matrix):    
+  def __WriteMatrixToFile(self, file, matrix):
     for i in range(0, len(matrix)):
       for j in range(0, len(matrix[0])):
-        file.write(str(matrix[i][j]) + ' ')
+        file.write(str(matrix[i][j]))
+        if j != len(matrix[0]) - 1:
+          file.write(" ")
       file.write("\n")
 
 
@@ -87,8 +88,8 @@ def ReadDataset(path):
 
 
 
-# generator = DatasetGenerator().GenerateDataset(file_name="train", size=10000)
-# generator = DatasetGenerator().GenerateDataset(file_name="test", size=2000)
+# DatasetGenerator().GenerateDataset(file_name="train", size=10000)
+# DatasetGenerator().GenerateDataset(file_name="test", size=2000)
 
 # input, output, size, image_width, image_height = \
 #   ReadDataset("C:/UNN/Мага/ИТОПР/Micro-Atomic/src/Neural Network/datasets/test.txt")

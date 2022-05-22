@@ -1,9 +1,8 @@
-from tensorflow.keras.models import load_model
 from tensorflow.keras import layers, optimizers, models
 import numpy as np
 import tensorflow as tf
 from data_parser import DataCollector
-from fake_dataset_utils import DatasetGenerator, ReadDataset
+from fake_dataset_utils import ReadDataset
 
 import os
 import sys
@@ -46,6 +45,12 @@ train_input, train_output, size, image_width, image_height = \
   ReadDataset("C:/UNN/Maga/ITOPR/Micro-Atomic/src/Neural Network/datasets/train.txt")
 test_input, test_output, size, image_width, image_height = \
   ReadDataset("C:/UNN/Maga/ITOPR/Micro-Atomic/src/Neural Network/datasets/test.txt")
+
+# normalization
+for i in range(len(test_input)):
+  test_input[i] /= np.max(test_input[i])
+for i in range(len(train_input)):
+  train_input[i] /= np.max(train_input[i])
 
 # model args
 learning_rate = 0.003
