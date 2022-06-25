@@ -24,7 +24,7 @@ class DatasetGenerator:
     file_name = file_name + (str(file_index) if file_index > 1 else "") + ".txt"
     self.file_name_full = os.path.join(self.current_dir, "datasets", file_name)
     open(self.file_name_full, 'w')
-    print("Created: " + self.file_name_full)
+    print("Creating: " + self.file_name_full + " ...")
 
 
   def __WriteMatrixToFile(self, file, matrix):
