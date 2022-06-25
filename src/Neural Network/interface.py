@@ -6,8 +6,14 @@ import os
 from data_parser import DataCollector
 
 # argv[1] is absolut path to input file
-assert(len(sys.argv) >= 2)
-input_file = sys.argv[1]
+input_file = ""
+if len(sys.argv) >= 2:
+  input_file = sys.argv[1]
+  print("No input file")
+  sys.exit(1)
+if not os.path.exists(input_file):
+  print("Input file doesn't exist")
+  sys.exit(1)
 
 # open saved model
 model = load_model(os.path.join(os.path.dirname(sys.argv[0]), "model.h5"))
