@@ -24,7 +24,6 @@ def normalize(parser):
     max = np.max(data)
     data /= max
 
-
     # exp_value = data.mean()
     # dis = dispersion(data, exp_value)
     # deviation = sqrt(dis)

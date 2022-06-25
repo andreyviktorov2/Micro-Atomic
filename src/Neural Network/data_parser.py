@@ -1,4 +1,6 @@
 import numpy as np
+import imageio
+from PIL import Image
 
 class DataCollector(object):
     
@@ -21,6 +23,14 @@ class DataCollector(object):
     with open(path, "r") as file:
       self.data = file.readlines()
     self.__ParseData()
+  
+  def ReadImage(self, path):
+    image = Image.open(path)
+    matrix = np.array(image.getdata()).reshape((image.height, image.width))
+    self.matrix = matrix
+    self.ny = image.height
+    self.nx = image.width
+    
   
   def __ParseData(self):
     for line in self.data:
