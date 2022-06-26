@@ -5,6 +5,7 @@ import os
 import time
 
 from data_parser import DataCollector
+from fake_dataset_utils import ResultPrinter, OutputHandler
 
 # argv[1] is absolut path to input file
 if len(sys.argv) < 2:
@@ -41,27 +42,6 @@ prediction = model.predict(input)[0][0] * 100.0
 prediction_time = time.time() - prediction_time
 
 if "-f" in sys.argv:
-  file_index = 1
-  while os.path.exists(os.path.join(                       
-      os.path.dirname(sys.argv[0]), "output" +            
-      (str(file_index) if file_index > 1 else "") + ".txt")):
-    file_index += 1
-  file_name = os.path.join(os.path.dirname(sys.argv[0]),\
-      "output" + (str(file_index) if file_index > 1 else "") + ".txt")
-
-  with open(file_name, 'w') as file:
-    file.write(input_file + "\n")
-    if(prediction >= 50):
-      file.write("Defect (probability " + "{:.2f}".format(prediction) + "%)\n")
-    else:
-      file.write("No defect (probability " + "{:.2f}".format(100 - prediction) + "%)\n")
-    file.write("Data reading time: " + "{:.3f}".format(data_read_time) + " seconds\n")
-    file.write("Prediction time: " + "{:.3f}".format(prediction_time) + " seconds")
-  print("Result was stored in " + file_name)
+  OutputHandler().PrintPrediction(input_file, prediction, data_read_time, prediction_time)
 else:
-  if(prediction >= 50):
-    print("Defect (probability " + "{:.2f}".format(prediction) + "%)")
-  else:
-    print("No defect (probability " + "{:.2f}".format(100 - prediction) + "%)")
-  print("Data reading time: " + "{:.3f}".format(data_read_time) + " seconds")
-  print("Prediction time: " + "{:.3f}".format(prediction_time) + " seconds")
+  ResultPrinter().PrintPrediction(prediction, data_read_time, prediction_time)
