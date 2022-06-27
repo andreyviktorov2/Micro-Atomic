@@ -2,10 +2,8 @@
 
 ## Prerequisites
 
-* `cmake` версии 3.8 или новее - [Download](http://www.cmake.org/download/)
-* C++ компилятор
-  * Windows: `Visual Studio` - [Download](https://visualstudio.microsoft.com/downloads/)
-  * Linux: `GCC` - [Download](https://gcc.gnu.org/install/)
+* `python` версии 3.8 или новее
+* `Tensorflow` 2.x
 
 ## How to use
 ### Create workspace
@@ -28,27 +26,16 @@ cd %MICRO_ATOMIC%
 git clone https://github.com/andreyviktorov2/Micro-Atomic.git
 ```
 
-
-### Build project
-
-```bash
-cd %MICRO_ATOMIC%
-mkdir build
-cd build
-
-#.sln file is created here
-cmake ../src 
-cmake --build .
-```
-
-Если вы используете Windows, вы можете использовать созданный .sln файл для создания исполняемого файла.
-
 ### Run project
 
-Созданный исполняемый файл будет лежать в директории $MICRO_ATOMIC/build/Debug. Запуск:
+Запуск:
 
 ```bash
-./MicroAtomic.exe
+python %MICRO_ATOMIC%\\src\\Neural Network\\micro_atomic.py path\\to\\data.txt
 ```
-TODO: сделать проект Release по умолчанию
 
+Для сохранения результатов работы в файл прописать ключ -f:
+
+```bash
+python %MICRO_ATOMIC%\\src\\Neural Network\\micro_atomic.py path\\to\\data.txt -f
+```
